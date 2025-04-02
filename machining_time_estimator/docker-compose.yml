@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  machining_time_estimator:
+    container_name: machining_time_estimator
+    build: .
+    ports:
+      - "5003:5003"
+    env_file:
+      - .env
+    volumes:
+      - $DATA_FOLDER_EXTERNAL:$DATA_FOLDER
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]

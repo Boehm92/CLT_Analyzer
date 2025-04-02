@@ -1,0 +1,24 @@
+{
+    "os": "Windows-10-10.0.19041-SP0",
+    "python": "3.6.8",
+    "heartbeatAt": "2025-02-12T19:56:19.211079",
+    "startedAt": "2025-02-12T19:56:17.166399",
+    "docker": null,
+    "gpu": "Quadro T2000",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "D:\\Promotion\\Repos\\CoCADAi_framework\\machining_time_estimator\\scripts\\__main__.py",
+    "codePath": "machining_time_estimator\\scripts\\__main__.py",
+    "git": {
+        "remote": "https://github.com/Boehm92/CoCADAi_framework.git",
+        "commit": "869aa07e6a360dd220baa8c86ba0c93890642c17"
+    },
+    "email": "40231115+Boehm92@users.noreply.github.com",
+    "root": "D:/Promotion/Repos/CoCADAi_framework",
+    "host": "LTROD10408",
+    "username": "bost886",
+    "executable": "D:\\Promotion\\Repos\\CoCADAi_framework\\venv\\Scripts\\python.exe"
+}

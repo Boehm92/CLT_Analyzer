@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  machining_feature_recognition:
+    container_name: machining_feature_recognition
+    build: .
+    ports:
+      - "5002:5002"
+    env_file:
+      - .env
+    volumes:
+      - $DATA_FOLDER_EXTERNAL:$DATA_FOLDER
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]

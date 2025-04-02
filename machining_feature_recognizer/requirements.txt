@@ -1,0 +1,7 @@
+wandb==0.15.12
+optuna==3.4.0
+numpy-stl==3.0.1
+scikit-learn==1.6.1
+Flask==3.1.0
+flask-cors==5.0.0
+pymadcad==0.16.0
