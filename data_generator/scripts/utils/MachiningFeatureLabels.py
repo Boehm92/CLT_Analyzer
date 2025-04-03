@@ -60,7 +60,6 @@ class MachiningFeatureLabels:
         for machining_feature_id, machining_feature in enumerate(self.machining_feature_list):
 
             _machining_feature_for_labeling = np.array([point.to_tuple() for point in machining_feature.points])
-            _machining_feature_for_labeling = np.clip(_machining_feature_for_labeling, 0, 10)
 
             if (coord in _new_cad_model_vertices for coord in _machining_feature_for_labeling):
                 x_values = [vector[0] for vector in _machining_feature_for_labeling]

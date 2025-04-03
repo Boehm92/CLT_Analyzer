@@ -14,31 +14,34 @@ _parser.add_argument('--cad_data_generation_start_cycle',
                           'start number of the data generation cycle then is not adapted, the existing data is just'
                           'overwritten')
 _parser.add_argument('--cad_data_generation_end_cycles',
-                     dest='cad_data_generation_end_cycles', type=int, default=144001,
+                     dest='cad_data_generation_end_cycles', type=int, default=10,
                      help='This value defines how many cad models with multiple machining feature are '
                           'created.')
-_parser.add_argument('--max_machining_feature_count',
-                     dest='max_machining_feature_count', type=int, default=8,
-                     help='This value defines how many machining feature maximal can be applied to the base'
-                          'primitive. The actual value will be randomly chosen from an interval from 1 to'
-                          'the here defined value. For single feature creation this value should be 2, because the '
-                          'random function starts at 1. If machining feature should not be selected randomly, the value'
-                          ' machining_feature_id in the Class DataGenerator has to be fixed to the wished machining '
-                          'feature')
+_parser.add_argument('--machining_config',
+                     dest='machining_config',
+                     type=str,
+                     default="""[(0, np.random.randint(0, 15)),
+                                (1, np.random.randint(1, 3)), 
+                                (2, np.random.randint(1, 4)),
+                                (3, np.random.randint(1, 15)),
+                                (4, np.random.randint(1, 3)),   
+                                (5, np.random.randint(1, 10)),   
+                                (6, np.random.randint(1, 13)),]""",
+                     help='0: PowerOutlet, 1: Door, 2: Window, 3: TransportConnector, 4: ElectricalCabinet,'
+                          '5: ElecticalWire, 6: XFitConnector:')
 _parser.add_argument('--random_generation_seed',
                      dest='random_generation_seed', type=int, default=42,
                      help='Random seed for generating CAD models')
 _parser.add_argument('--select_machining_feature_id_random',
-                     dest='select_machining_feature_id_random', type=bool, default=True,
+                     dest='select_machining_feature_id_random', type=bool, default=False,
                      help='When true, the machining_feature_id in the Class DataGenerator is selected '
                           'randomly. If false it uses the config value machining_feature_id. Should only'
                           'be true for single machining feature creation.')
 _parser.add_argument('--machining_feature_id',
-                     dest='machining_feature_id', type=int, default=21,
+                     dest='machining_feature_id', type=int, default=0,
                      help='This value selects a specific machining feature for the application to the base'
                           'primitive. Can only be used if "select_machining_feature_id_random" is False.'
                           'Should be true for single machining feature creation.')
-
 if __name__ == '__main__':
     _config = _parser.parse_args()
     _data_generator = DataGenerator(_config)
