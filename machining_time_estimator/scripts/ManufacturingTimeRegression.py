@@ -80,7 +80,6 @@ class ManufacturingTimeRegression:
         return rmse_val_loss
 
     def test(self):
-        _intersecting_models = []
         _response = 0
         _combined_response = {
             "volume": 0.0,
@@ -90,10 +89,6 @@ class ManufacturingTimeRegression:
             "height": 0.0,
             "time": 0.0
         }
-        _offset = 5.000001
-        _new_cad_model = mdc.io.read(os.path.join(os.getenv('TEST_DATA'), "received.stl"))
-        _new_cad_model.mergeclose()
-        _new_cad_model = mdc.segmentation(_new_cad_model)
 
         stl_mesh = mesh.Mesh.from_file(os.path.join(os.getenv('TEST_DATA'), 'received.stl'))
         _volume, _cog, _inertia = stl_mesh.get_mass_properties()
@@ -107,33 +102,20 @@ class ManufacturingTimeRegression:
         _combined_response["width"] = _width
         _combined_response["height"] = _height
 
-        for x in range(3):
-            for y in range(2):
-                for z in range(3):
-                    try:
-                        _position = [x * 10 + _offset, y * 10 + _offset, z * 10 + _offset]
-                        _cube = mdc.brick(width=mdc.vec3(10)).transform(mdc.vec3(_position))
-                        _intersected_model = mdc.intersection(_new_cad_model, _cube).transform(
-                            -mdc.vec3(*_position) + _offset)
-                        mdc.write(_intersected_model, os.path.join(os.getenv('TEST_DATA'), "received.stl"))
+        _test_dataset = DataImporter(os.getenv('TEST_DATA'), os.getenv('TEST_DATA'))
+        _test_loader = DataLoader(_test_dataset, batch_size=self.hyper_parameters.batch_size,
+                                  shuffle=False, drop_last=True)
 
-                        _test_dataset = DataImporter(os.getenv('TEST_DATA'), os.getenv('TEST_DATA'))
-                        _test_loader = DataLoader(_test_dataset, batch_size=self.hyper_parameters.batch_size,
-                                                  shuffle=False, drop_last=True)
-                    except FileNotFoundError:
-                        print('No CAD test data found.')
-                        continue
+        _network_model = self.network_model(_test_dataset, self.device, self.hyper_parameters).to(
+            self.device)
+        _network_model.load_state_dict(
+            torch.load((os.getenv('WEIGHTS') + '/mte_weights.pt'), torch.device('cuda')))
 
-                    _network_model = self.network_model(_test_dataset, self.device, self.hyper_parameters).to(
-                        self.device)
-                    _network_model.load_state_dict(
-                        torch.load((os.getenv('WEIGHTS') + '/mte_weights.pt'), torch.device('cuda')))
-
-                    _response += _network_model.test(_test_loader)
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/mte_data.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_filter.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_transform.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "received.stl"))
+        _response += _network_model.test(_test_loader)
+        os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/mte_data.pt"))
+        os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_filter.pt"))
+        os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_transform.pt"))
+        os.remove(os.path.join(os.getenv('TEST_DATA'), "received.stl"))
 
         _combined_response["time"] = _response
 

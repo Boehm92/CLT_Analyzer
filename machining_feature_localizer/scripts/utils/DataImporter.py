@@ -51,7 +51,6 @@ class DataImporter(InMemoryDataset):
     @staticmethod
     def cad_graph_conversion(file_path, annotations):
         mesh_object = mesh.Mesh.from_file(file_path)
-
         unique_vectors = np.unique(mesh_object.vectors.reshape([int(mesh_object.vectors.size / 3), 3]), axis=0)
         unique_vectors_map = {str(unique_vector): index for index, unique_vector in enumerate(unique_vectors)}
 
@@ -69,7 +68,7 @@ class DataImporter(InMemoryDataset):
             edge_index.append([index_list[2], index_list[0]])
             edge_index.append([index_list[0], index_list[2]])
 
-        unique_vectors = unique_vectors / np.array([10, 10, 10])
+        unique_vectors = unique_vectors / np.array([20000, 300, 3500])
 
         if annotations is not None:
             graph = Data(

@@ -8,6 +8,8 @@ import STLFileList from "@/components/STLFileList/STLFileList";
 import TitleBar from "@/components/TitleBar/TitleBar";
 import MachiningFeatureDisplay from "@/components/MachiningFeatureDisplay/MachiningFeatureDisplay";
 import { handleFileUpload, handleSelectFile, STLFile } from "@/utils/fileService";
+import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
+
 
 export default function Home() {
     const [fileUrl, setFileUrl] = useState<string | null>(null);
@@ -46,6 +48,9 @@ export default function Home() {
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: "center", marginTop: 0, width: "100%", maxWidth: "1200px" }}>
                         <MachiningFeatureDisplay selectedFeatures={mfrFeatures.map(feature => Boolean(feature))} />
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", gap: 4, width: "100%", maxWidth: "1200px", marginTop: 4 }}>
+                        <VideoPlayer src="/simulation.mp4" />
                     </Box>
                 </Box>
 

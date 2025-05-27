@@ -30,16 +30,13 @@ class MachiningFeatureLabels:
         _new_cad_model_vertices = [self.truncate_coordinates(vertices)
                                    for vertices in _new_cad_model_vertices]
 
-        _label_list = [24] * len(_new_cad_model_vertices)
+        _label_list = [8] * len(_new_cad_model_vertices)
 
         for machining_feature_id, machining_feature in enumerate(self.machining_feature_list):
             _machining_feature_for_labeling = np.array([point.to_tuple() for point in machining_feature.points])
 
-            # round vertices of new cad model and machining feature, so a correct comparison is possible
             _machining_feature_for_labeling = [self.truncate_coordinates(vertices)
                                                for vertices in _machining_feature_for_labeling]
-            # _label_list = [self.machining_feature_id[count]
-            #              if coord in self.machining_feature_for_labeling else 24 for coord in _new_cad_model_vertices]
 
             for vertices_index, cad_model_vertices in enumerate(_new_cad_model_vertices):
                 for machining_feature_vertices in _machining_feature_for_labeling:
@@ -47,7 +44,6 @@ class MachiningFeatureLabels:
                         _label_list[vertices_index] = self.machining_feature_id_list[machining_feature_id]
 
         self.write_csv_file(_label_list, "vertices_label")
-
 
     def write_bounding_box_file(self):
         _label_list = []

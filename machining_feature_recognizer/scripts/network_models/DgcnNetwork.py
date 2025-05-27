@@ -40,7 +40,7 @@ class DgcnNetwork(torch.nn.Module):
                        Dropout(self.dropout_probability),
                        MLP([int(self.mlp_hidden_channels / 4), int(self.mlp_hidden_channels / 8)]),
                        Dropout(self.dropout_probability),
-                       Lin(int(self.mlp_hidden_channels / 8), 24))
+                       Lin(int(self.mlp_hidden_channels / 8), 7))
 
     def forward(self, x, edge_index, batch):
 

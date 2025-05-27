@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  machining_feature_localizer:
-    container_name: machining_feature_localizer
+  clt_localizer:
+    container_name: clt_localizer
     build: .
     ports:
       - "5001:5001"

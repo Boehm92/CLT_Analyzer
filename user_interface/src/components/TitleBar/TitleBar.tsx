@@ -26,7 +26,7 @@ export default function TitleBar({onUploadClick}: { onUploadClick: () => void })
                         color: "white",  // Helle Schrift für guten Kontrast
                     }}
                 >
-                    CoCadAi-Framework
+                    CLT-Analyzer
                 </Typography>
 
                 <Button

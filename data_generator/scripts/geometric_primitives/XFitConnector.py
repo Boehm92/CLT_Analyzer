@@ -12,15 +12,14 @@ class XFitConnector:
         self.length = np.random.uniform(300, 400)
         self.pos_z = np.random.uniform(400, base_primitive.height - 400)
 
-        self.negative_start_point = -0.1
-        self.positive_start_point = base_primitive.depth + 0.1
+        self.negative_start_point = -0.0001
+        self.positive_start_point = base_primitive.depth + 0.0001
         self.depth = np.random.uniform(100, 200)
         self.angle = math.sin(math.radians(60))
 
-        self.max_volume = 316
-        self.max_manufacturing_time = 1
-        self.manufacturing_time_side_supplement = 0.16
-        self.manufacturing_time_bottom_supplement = 1
+        self.max_volume = 27712812
+        self.max_manufacturing_time = 1.5
+        self.movement_time_supplement = 0.33
 
         self.triangle_vectors = {
             "direction_1": [
@@ -56,6 +55,7 @@ class XFitConnector:
 
     def manufacturing_time_calculation(self, triangle):
         manufacturing_time = self.max_manufacturing_time * (triangle.volume() / self.max_volume)
+        manufacturing_time += self.movement_time_supplement
 
         return manufacturing_time
 

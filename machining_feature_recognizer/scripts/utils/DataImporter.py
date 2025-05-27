@@ -69,9 +69,9 @@ class DataImporter(InMemoryDataset, ABC):
             edge_index.append([index_list[2], index_list[0]])
             edge_index.append([index_list[0], index_list[2]])
 
-        unique_vectors = unique_vectors / np.array([10, 10, 10])
+        unique_vectors = unique_vectors / np.array([20000, 300, 3500])
 
-        label_array = np.zeros(24, dtype=np.float32)
+        label_array = np.zeros(7, dtype=np.float32)
         for label in file_labels:
             label_array[label] = 1
 

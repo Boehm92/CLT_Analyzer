@@ -18,7 +18,7 @@ from network_models.GraphConv import GraphConv
 
 _parser = argparse.ArgumentParser(description='Base configuration of the synthetic data generator')
 _parser.add_argument('--application_mode',
-                     dest='application_mode', default='training', type=str,
+                     dest='application_mode', default='test', type=str,
                      help='The application modes has "trained" and "graph". When set to trained the framework uses the'
                           'TestModel class to train graph neural network. Please note, if you want to graph different'
                           'graph conv layer, the TestModel class must be configured with accordingly. For example,'
@@ -33,14 +33,14 @@ _parser.add_argument('--application_mode',
                           'procedure uses a so called hyperparameter optimization. For more info about this '
                           'optimization process, please visit: https://optuna.org/')
 _parser.add_argument('--project_name',
-                     dest='project_name', default='CoCadAi_framework', type=str,
+                     dest='project_name', default='CLT_framework', type=str,
                      help='This name belongs to the wandb project which is created when the code is started. The wandb '
                           'code publishes training parameters like train_accuracy to your personal wandb dashboard. You'
                           'just have to register at www.wandb.ai and follow the instructions at: '
                           'https://docs.wandb.ai/quickstart.'
                           '(Not used for testing)')
 _parser.add_argument('--study_name',
-                     dest='study_name', default='test', type=str,
+                     dest='study_name', default='MTE_DGCNN', type=str,
                      help='The study name defines a subgroup for the wandb project, which is defined above. This helps'
                           'to repeat an experiment or training process without creating every time a new wandb project.'
                           '(Not used for testing)')
@@ -53,8 +53,7 @@ _parser.add_argument('--hyperparameter_trials',
                           'parameter, the training procedure has to be conducted multiple times, so the optimization '
                           'algorithms can analyze how different values of each parameter influences the training '
                           'procedure of the network. More information about hyperparameter optimization at:'
-                          'https://optuna.org/'
-                     )
+                          'https://optuna.org/')
 _parser.add_argument('--training_dataset',
                      dest='training_dataset', default=DataImporter(os.getenv('TRAINING_DATASET_SOURCE'),
                                                                    os.getenv('TRAINING_DATASET_DESTINATION')).shuffle(),
@@ -64,7 +63,7 @@ _parser.add_argument('--training_dataset',
                           'once, as long as the data doesnt change. '
                           '(Not used for testing)')
 _parser.add_argument('--train_val_partition',
-                     dest='train_val_partition', default=3, type=int,  # 115200
+                     dest='train_val_partition', default=900, type=int,  # 115200
                      help='This variable allows you to separate the training data, taken from the "data -> cad ->'
                           'training" folder, into training and validation datasets. For example, if you have 24000 '
                           'cad models, if you type in value 22000 models, then 22000 models will be utilized for '
@@ -80,7 +79,7 @@ _parser.add_argument('--device',
                           'used operation system, python interpreter, used graphic card and installed cuda toolkit.'
                           'So, it may take some time to find the right setting for you. We suggest, for the first '
                           'implementation, to install the packages manually.')
-_parser.add_argument('--max_epoch', dest='max_epoch', default=100, type=int,
+_parser.add_argument('--max_epoch', dest='max_epoch', default=30, type=int,
                      help='The max epoch defines how often the complete training data is run trough. One epoch means'
                           'therefore, that the graph neural network is fitted ones an all available training data. '
                           'More epochs generally decreases the network loss, but can also lead to overfitting,'

@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  machining_feature_recognition:
-    container_name: machining_feature_recognition
+  clt_recognizer:
+    container_name: clt_recognizer
     build: .
     ports:
       - "5002:5002"

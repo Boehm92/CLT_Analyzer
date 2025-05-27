@@ -1,12 +1,12 @@
 class HyperParameter:
     def __init__(self, trial, network_model):
         self.params = {
-            #"batch_size": trial.suggest_categorical("batch_size", [32, 64, 128, 256]),
-            "dropout_probability": trial.suggest_categorical("dropout_probability", [0.1, 0.2, 0.3, 0.4, 0.5]),
-            "learning_rate": trial.suggest_categorical("learning_rate", [0.01, 0.001, 0.0001]),
+            # "batch_size": trial.suggest_categorical("batch_size", [32, 64, 128, 256]),
+            # "dropout_probability": trial.suggest_categorical("dropout_probability", [0.1, 0.2, 0.3, 0.4, 0.5]),
+            # "learning_rate": trial.suggest_categorical("learning_rate", [0.01, 0.001, 0.0001]),
             "batch_size": 1,
-            # "dropout_probability": 0.2,
-            # "learning_rate": 0.001,
+            "dropout_probability": 0.2,
+            "learning_rate": 0.001,
         }
         if network_model == "GcNetwork":
             self.params.update({
@@ -15,14 +15,14 @@ class HyperParameter:
             })
         elif network_model == "DgcnNetwork":
             self.params.update({
-                "number_conv_layers": trial.suggest_categorical("number_conv_layers", [2, 3, 4]),
-                "conv_hidden_channels": trial.suggest_categorical("conv_hidden_channels", [32, 64, 128]),
-                "mlp_hidden_channels": trial.suggest_categorical("mlp_hidden_channels", [64, 128, 256, 512]),
-                "aggr": "max",
-                # "number_conv_layers": 3,
-                # "conv_hidden_channels": 128,
-                # "mlp_hidden_channels": 256,
+                # "number_conv_layers": trial.suggest_categorical("number_conv_layers", [2, 3, 4]),
+                # "conv_hidden_channels": trial.suggest_categorical("conv_hidden_channels", [32, 64, 128]),
+                # "mlp_hidden_channels": trial.suggest_categorical("mlp_hidden_channels", [64, 128, 256, 512]),
                 # "aggr": "max",
+                "number_conv_layers": 3,
+                "conv_hidden_channels": 64,
+                "mlp_hidden_channels": 256,
+                "aggr": "max",
             })
         elif network_model == "SageGnNetwork":
             self.params.update({

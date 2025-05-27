@@ -6,7 +6,7 @@ class CltWall:
     def __init__(self):
         self.length = np.random.uniform(16000, 20000)
         self.height = np.random.uniform(2400, 3500)
-        self.depth = np.random.uniform(600, 1600)
+        self.depth = np.random.uniform(60, 300)
         self.wall_dimensions = mdc.vec3(self.length, self.depth, self.height)
 
     def transform(self):

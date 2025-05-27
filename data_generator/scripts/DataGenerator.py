@@ -12,8 +12,6 @@ class DataGenerator:
         self.cad_data_generation_start_cycle = config.cad_data_generation_start_cycle
         self.cad_data_generation_end_cycles = config.cad_data_generation_end_cycles
         self.target_directory = config.target_directory
-        self.select_machining_feature_id_random = config.select_machining_feature_id_random
-        self.machining_feature_id = config.machining_feature_id
         self.machining_config = eval(config.machining_config)
         np.random.seed(config.random_generation_seed)
 
@@ -24,10 +22,19 @@ class DataGenerator:
             _manufacturing_time = 0
             _cltWall = CltWall()
             _new_cad_model = _cltWall.transform()
+            _machining_config = [(0, np.random.randint(0, 8)),
+                                 (1, np.random.randint(0, 3)),
+                                 (2, np.random.randint(0, 4)),
+                                 (3, np.random.randint(1, 7)),
+                                 (4, np.random.randint(0, 2)),
+                                 (5, np.random.randint(0, 7)),
+                                 (6, np.random.randint(0, 9))]
+            # '0: PowerOutlet, 1: Door, 2: Window, 3: TransportConnector, 4: ElectricalCabinet,'
+            # '5: ElecticalWire, 6: XFitConnector:'
 
-            for _machining_feature_id, _count in self.machining_config:
-                try:
-                    for _ in range(_count):
+            for _machining_feature_id, _count in _machining_config:
+                for _ in range(_count):
+                    try:
                         _machining_feature, _machining_feature_time = \
                             MachiningFeature(_machining_feature_id, _cltWall).create()
 
@@ -42,11 +49,10 @@ class DataGenerator:
                         _machining_feature_id_list.append(_machining_feature_id)
                         _machining_feature_list.append(_machining_feature)
 
-                except Exception as e:
-                    print(f"[⚠] Feature-ID {_machining_feature_id} nicht alle anwendbar für Modell {_model_id}")
+                    except Exception as e:
+                        print(f"[⚠] Feature-ID {_machining_feature_id} nicht alle anwendbar für Modell {_model_id}")
 
             mdc.write(_new_cad_model, os.path.join(os.getenv(self.target_directory), f"{_model_id}.stl"))
-
             labels = MachiningFeatureLabels(_machining_feature_list, _model_id, self.target_directory,
                                             _machining_feature_id_list)
             labels.write_vertices_file()

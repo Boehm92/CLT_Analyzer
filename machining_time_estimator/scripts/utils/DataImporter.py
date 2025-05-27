@@ -50,7 +50,6 @@ class DataImporter(InMemoryDataset):
 
     @staticmethod
     def cad_graph_conversion(cad_directory, file_labels):
-        # numpy-stl method to import an .STL file as mesh object
         mesh_object = mesh.Mesh.from_file(cad_directory)
 
         unique_vectors = np.unique(mesh_object.vectors.reshape([-1, 3]), axis=0)
@@ -69,7 +68,7 @@ class DataImporter(InMemoryDataset):
             edge_index.append([index_list[2], index_list[0]])
             edge_index.append([index_list[0], index_list[2]])
 
-        unique_vectors = unique_vectors / np.array([10, 10, 10])
+        unique_vectors = unique_vectors / np.array([20000, 300, 3500])
 
         graph = Data(x=torch.tensor(unique_vectors).float(),
                      edge_index=torch.tensor(edge_index).t().contiguous(),

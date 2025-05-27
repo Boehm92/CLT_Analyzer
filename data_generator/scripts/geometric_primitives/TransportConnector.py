@@ -7,16 +7,15 @@ class TransportConnector:
     def __init__(self, _base_primitive):
         self.dir = "direction_1"
 
-        self.radius = 25
+        self.radius = 20
         self.pos_x = np.random.uniform(self.radius + 0.5, _base_primitive.length - self.radius)
         self.pos_y = _base_primitive.depth/2
         self.pos_z = _base_primitive.height - np.random.uniform(160, 180)
-        self.height = _base_primitive.height + 0.1
+        self.height = _base_primitive.height + 0.0001
 
-        self.max_volume = 632
-        self.max_manufacturing_time = 0.25
-        self.manufacturing_time_side_supplement = 0.16
-        self.manufacturing_time_bottom_supplement = 1
+        self.max_volume = 226080
+        self.max_manufacturing_time = 0.07
+        self.movement_time_supplement = 0.17
 
         self.transform = {
             "direction_1": [mdc.vec3(self.pos_x, self.pos_y, self.pos_z),
@@ -25,6 +24,7 @@ class TransportConnector:
 
     def manufacturing_time_calculation(self, _through_hole):
         manufacturing_time = self.max_manufacturing_time * (_through_hole.volume() / self.max_volume)
+        manufacturing_time += self.movement_time_supplement
 
         return manufacturing_time
 

@@ -25,19 +25,21 @@ export default function InfoBox({ combinedResponse }: { combinedResponse: { volu
                 ● Dimensions:
             </Typography>
             <Typography sx={{ marginLeft: 2 }}>
-                • <b>Length:</b> {combinedResponse?.length?.toFixed(2) || "0.00"} mm <br />
-                • <b>Width:</b> {combinedResponse?.width?.toFixed(2) || "0.00"} mm <br />
-                • <b>Height:</b> {combinedResponse?.height?.toFixed(2) || "0.00"} mm <br />
-                • <b>Volume:</b> {combinedResponse?.volume?.toFixed(2) || "0.00"} mm³
+                • <b>Length:</b> {(combinedResponse?.length ? (combinedResponse.length / 1000).toFixed(3) : "0.000")} m <br />
+                • <b>Width:</b> {(combinedResponse?.width ? (combinedResponse.width / 1000).toFixed(3) : "0.000")} m <br />
+                • <b>Height:</b> {(combinedResponse?.height ? (combinedResponse.height / 1000).toFixed(3) : "0.000")} m <br />
+
+                • <b>Volume:</b> {(combinedResponse?.volume ? (combinedResponse.volume / 1_000_000_000).toFixed(3) : "0.000000000")} m³
             </Typography>
 
             <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 2 }}>
                 ● Center of Gravity:
             </Typography>
             <Typography sx={{ marginLeft: 2 }}>
-                • <b>X:</b> {combinedResponse?.body_center[0]?.toFixed(2) || "0.00"} mm <br />
-                • <b>Y:</b> {combinedResponse?.body_center[1]?.toFixed(2) || "0.00"} mm <br />
-                • <b>Z:</b> {combinedResponse?.body_center[2]?.toFixed(2) || "0.00"} mm
+                • <b>X:</b> {combinedResponse?.body_center?.[0] !== undefined ? (combinedResponse.body_center[0] / 1000).toFixed(3) : "0.000"} m <br />
+                • <b>Y:</b> {combinedResponse?.body_center?.[1] !== undefined ? (combinedResponse.body_center[1] / 1000).toFixed(3) : "0.000"} m <br />
+                • <b>Z:</b> {combinedResponse?.body_center?.[2] !== undefined ? (combinedResponse.body_center[2] / 1000).toFixed(3) : "0.000"} m <br />
+
             </Typography>
 
             <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 2 }}>

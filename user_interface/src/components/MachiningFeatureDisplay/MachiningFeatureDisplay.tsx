@@ -2,28 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 
 const labelColors: Record<number, string | null> = {
-    0: "#ff0000",  1: "#ff7300", 2: "#ffbf00", 3: "#d4ff00", 4: "#66ff00",
-    5: "#00ff33",  6: "#00ffbf", 7: "#00bfff", 8: "#0066ff", 9: "#0000ff",
-    10: "#7300ff", 11: "#bf00ff", 12: "#ff00bf", 13: "#ff0066", 14: "#ff0033",
-    15: "#800000", 16: "#804000", 17: "#808000", 18: "#408000", 19: "#008040",
-    20: "#008080", 21: "#004080", 22: "#000080", 23: "#400080", 24: null
+    0: "#e6194b", 1: "#3cb44b", 2: "#ffe119", 3: "#4363d8",
+    4: "#000000", 5: "#f58231", 6: "#46f0f0", 7: "#f032e6", 8: "#000000"
 };
-
 export default function MachiningFeatureDisplay({ selectedFeatures }: { selectedFeatures: boolean[] }) {
     const [images, setImages] = useState<string[]>([]);
 
     useEffect(() => {
-        // 🔥 Asynchrone Funktion innerhalb des useEffect
         const fetchImages = async () => {
             try {
                 const response = await fetch("/api/machiningFeature");
                 if (response.ok) {
                     const files = await response.json();
 
-                    // 🔹 Sortiere die Bilderliste nach Nummern
                     const sortedFiles = files.sort((a: string, b: string) => {
                         const numA = extractNumber(a);
                         const numB = extractNumber(b);
@@ -42,7 +35,6 @@ export default function MachiningFeatureDisplay({ selectedFeatures }: { selected
         void fetchImages();
     }, []);
 
-    // 🔹 Extrahiere die Nummer aus dem Dateinamen
     function extractNumber(fileName: string): number {
         const match = fileName.match(/\d+/);
         return match ? parseInt(match[0], 10) : 9999;
@@ -80,15 +72,15 @@ export default function MachiningFeatureDisplay({ selectedFeatures }: { selected
                             backgroundColor: backgroundColor,
                         }}
                     >
-                        <Image
+                        <img
                             src={`/machiningFeatureTemplates/${fileName}`}
                             alt={fileName}
                             width={80}
                             height={80}
-                            style={{ objectFit: "contain" }} // ✅ Optimierte Bildgröße
+                            style={{ objectFit: "contain" }}
                         />
                         <Typography variant="caption" sx={{ marginTop: 1, color: "white" }}>
-                            {fileName.replace(".PNG", "").replace(".png", "")}
+                            {fileName.replace(".svg", "")}
                         </Typography>
                     </Box>
                 );

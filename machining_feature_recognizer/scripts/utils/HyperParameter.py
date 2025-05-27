@@ -5,7 +5,7 @@ class HyperParameter:
             # "dropout_probability": trial.suggest_categorical("dropout_probability", [0.1, 0.2, 0.2, 0.3, 0.4, 0.5]),
             # "learning_rate": trial.suggest_categorical("learning_rate", [0.01, 0.001, 0.001])
 
-            "batch_size": 3,
+            "batch_size": 1,
             "dropout_probability": 0.2,
             "learning_rate": 0.001
         }

@@ -10,11 +10,8 @@ import GridOnIcon from "@mui/icons-material/GridOn";
 import GridOffIcon from "@mui/icons-material/GridOff";
 
 const labelColors: Record<number, string | null> = {
-    0: "#ff0000",  1: "#ff7300", 2: "#ffbf00", 3: "#d4ff00", 4: "#66ff00",
-    5: "#00ff33",  6: "#00ffbf", 7: "#00bfff", 8: "#0066ff", 9: "#0000ff",
-    10: "#7300ff", 11: "#bf00ff", 12: "#ff00bf", 13: "#ff0066", 14: "#ff0033",
-    15: "#800000", 16: "#804000", 17: "#808000", 18: "#408000", 19: "#008040",
-    20: "#008080", 21: "#004080", 22: "#000080", 23: "#400080", 24: null
+    0: "#e6194b", 1: "#3cb44b", 2: "#ffe119", 3: "#4363d8",
+    4: "#000000", 5: "#f58231", 6: "#46f0f0", 7: "#f032e6", 8: "#000000"
 };
 
 interface WireframeViewerProps {
@@ -24,7 +21,7 @@ interface WireframeViewerProps {
 }
 
 export default function WireframeViewer({ fileUrl, features, predictedLabels }: WireframeViewerProps) {
-    const [isWireframe, setIsWireframe] = useState(true);
+    const [isWireframe, setIsWireframe] = useState(false);
 
     const toggleWireframe = () => {
         setIsWireframe((prev) => !prev);
@@ -71,7 +68,7 @@ export default function WireframeViewer({ fileUrl, features, predictedLabels }: 
                 </IconButton>
             </Box>
             <Canvas
-                camera={{ position: [50, 50, 50], fov: 45 }}
+                camera={{ position: [8000, 5000, 1600], fov: 100, near: 1, far: 50000 }}
                 shadows
                 style={{ background: "whitesmoke", width: "100%", height: "90%" }}
             >
@@ -85,7 +82,7 @@ export default function WireframeViewer({ fileUrl, features, predictedLabels }: 
                 {features && predictedLabels && (
                     <LabeledVertices features={features} predictedLabels={predictedLabels} />
                 )}
-                <OrbitControls />
+                <OrbitControls target={[8000, 0, 1600]} />
             </Canvas>
         </Box>
     );
@@ -115,7 +112,7 @@ function LabeledVertices({ features, predictedLabels }: { features: number[][]; 
         if (!features.length || !predictedLabels.length) return [];
         return features
             .map((coord, index) => {
-                if (predictedLabels[index] === 24) return null;
+                if (predictedLabels[index] === 8) return null;
                 return {
                     position: new THREE.Vector3(coord[0], coord[1], coord[2]),
                     color: labelColors[predictedLabels[index] % 25] || "#ffffff"
@@ -130,7 +127,7 @@ function LabeledVertices({ features, predictedLabels }: { features: number[][]; 
         <>
             {vertices.map((v, i) => (
                 <mesh key={i} position={[v!.position.x, v!.position.y, v!.position.z]}>
-                    <sphereGeometry args={[0.5, 16, 16]} />
+                    <sphereGeometry args={[100, 16, 16]} />
                     <meshStandardMaterial color={v!.color} />
                 </mesh>
             ))}
