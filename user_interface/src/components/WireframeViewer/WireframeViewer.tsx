@@ -4,10 +4,12 @@ import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import * as THREE from "three";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import GridOnIcon from "@mui/icons-material/GridOn";
 import GridOffIcon from "@mui/icons-material/GridOff";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 
 const labelColors: Record<number, string | null> = {
     0: "#e6194b", 1: "#3cb44b", 2: "#ffe119", 3: "#4363d8",
@@ -22,23 +24,39 @@ interface WireframeViewerProps {
 
 export default function WireframeViewer({ fileUrl, features, predictedLabels }: WireframeViewerProps) {
     const [isWireframe, setIsWireframe] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const viewerRef = useRef<HTMLDivElement>(null);
 
-    const toggleWireframe = () => {
-        setIsWireframe((prev) => !prev);
+    const toggleWireframe = () => setIsWireframe(prev => !prev);
+
+    const toggleFullscreen = () => {
+        if (!document.fullscreenElement && viewerRef.current) {
+            viewerRef.current.requestFullscreen();
+        } else if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
     };
+
+    useEffect(() => {
+        const handleChange = () => setIsFullscreen(!!document.fullscreenElement);
+        document.addEventListener("fullscreenchange", handleChange);
+        return () => document.removeEventListener("fullscreenchange", handleChange);
+    }, []);
 
     return (
         <Box
+            ref={viewerRef}
             sx={{
-                width: "40vw",
-                minWidth: "300px",
-                height: "40vw",
-                maxHeight: "400px",
+                width: isFullscreen ? "100vw" : "40vw",
+                height: isFullscreen ? "100vh" : "40vw",
+                maxHeight: isFullscreen ? "100vh" : "400px",
+                position: "relative",
                 borderRadius: 2,
                 overflow: "hidden",
                 bgcolor: "#787474",
                 boxShadow: "3px 3px 10px rgba(0,0,0,0.2)",
                 margin: "auto",
+                transition: "all 0.3s ease"
             }}
         >
             <Box
@@ -62,9 +80,17 @@ export default function WireframeViewer({ fileUrl, features, predictedLabels }: 
                     onClick={toggleWireframe}
                     color="primary"
                     size="small"
-                    sx={{ position: "absolute", right: 8 }}
+                    sx={{ position: "absolute", right: 48 }}
                 >
                     {isWireframe ? <GridOffIcon /> : <GridOnIcon />}
+                </IconButton>
+                <IconButton
+                    onClick={toggleFullscreen}
+                    color="primary"
+                    size="small"
+                    sx={{ position: "absolute", right: 8 }}
+                >
+                    {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
                 </IconButton>
             </Box>
             <Canvas
@@ -107,7 +133,6 @@ function WireframeSTLMesh({ fileUrl, isWireframe }: { fileUrl: string, isWirefra
 }
 
 function LabeledVertices({ features, predictedLabels }: { features: number[][]; predictedLabels: number[] }) {
-    // Immer `useMemo` aufrufen, auch wenn die Eingaben leer sind
     const vertices = useMemo(() => {
         if (!features.length || !predictedLabels.length) return [];
         return features
@@ -134,4 +159,3 @@ function LabeledVertices({ features, predictedLabels }: { features: number[][]; 
         </>
     );
 }
-

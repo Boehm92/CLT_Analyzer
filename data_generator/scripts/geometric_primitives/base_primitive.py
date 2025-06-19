@@ -4,9 +4,9 @@ import numpy as np
 
 class CltWall:
     def __init__(self):
-        self.length = np.random.uniform(16000, 20000)
+        self.length = np.random.uniform(6000, 20000)
         self.height = np.random.uniform(2400, 3500)
-        self.depth = np.random.uniform(60, 300)
+        self.depth = np.random.uniform(300, 600)
         self.wall_dimensions = mdc.vec3(self.length, self.depth, self.height)
 
     def transform(self):

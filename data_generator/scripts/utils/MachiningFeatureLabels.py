@@ -23,7 +23,6 @@ class MachiningFeatureLabels:
             index=False)
 
     def write_vertices_file(self):
-        # get vertices for new cad model and machining features
         _new_cad_model = mesh.Mesh.from_file(os.getenv(self.target_directory) + "/" + str(self.model_id) + ".stl")
         _new_cad_model_vertices = np.array(np.unique(
             _new_cad_model.vectors.reshape([int(_new_cad_model.vectors.size / 3), 3]), axis=0))
@@ -31,17 +30,17 @@ class MachiningFeatureLabels:
                                    for vertices in _new_cad_model_vertices]
 
         _label_list = [8] * len(_new_cad_model_vertices)
+        tolerance = 1e-2  # Du kannst mit 1e-3 oder 1e-2 experimentieren
 
         for machining_feature_id, machining_feature in enumerate(self.machining_feature_list):
-            _machining_feature_for_labeling = np.array([point.to_tuple() for point in machining_feature.points])
+            _machining_feature_for_labeling = np.array([self.truncate_coordinates(point.to_tuple())
+                                                        for point in machining_feature.points])
 
-            _machining_feature_for_labeling = [self.truncate_coordinates(vertices)
-                                               for vertices in _machining_feature_for_labeling]
-
-            for vertices_index, cad_model_vertices in enumerate(_new_cad_model_vertices):
-                for machining_feature_vertices in _machining_feature_for_labeling:
-                    if cad_model_vertices == machining_feature_vertices:
-                        _label_list[vertices_index] = self.machining_feature_id_list[machining_feature_id]
+            for i, cad_vertex in enumerate(_new_cad_model_vertices):
+                for feature_vertex in _machining_feature_for_labeling:
+                    if np.linalg.norm(np.array(cad_vertex) - np.array(feature_vertex)) < tolerance:
+                        _label_list[i] = self.machining_feature_id_list[machining_feature_id]
+                        break  # kein mehrfaches Überschreiben
 
         self.write_csv_file(_label_list, "vertices_label")
 

@@ -1,65 +1,84 @@
 import os
+import time
 import numpy as np
 import madcad as mdc
 from geometric_primitives.base_primitive import CltWall
 from utils.MachiningFeature import MachiningFeature
-from utils.CsgOperation import CsgOperation
 from utils.MachiningFeatureLabels import MachiningFeatureLabels
 
+def run_single_model(args):
+    model_id, config = args
+    start_time = time.time()  # ⏱️ Startzeit für Benchmarking
 
-class DataGenerator:
-    def __init__(self, config):
-        self.cad_data_generation_start_cycle = config.cad_data_generation_start_cycle
-        self.cad_data_generation_end_cycles = config.cad_data_generation_end_cycles
-        self.target_directory = config.target_directory
-        self.machining_config = eval(config.machining_config)
-        np.random.seed(config.random_generation_seed)
+    base_path = os.getenv(config.target_directory)
+    np.random.seed(config.random_generation_seed + model_id)
 
-    def generate(self):
-        for _model_id in range(self.cad_data_generation_start_cycle, self.cad_data_generation_end_cycles):
-            _machining_feature_id_list = []
-            _machining_feature_list = []
-            _manufacturing_time = 0
-            _cltWall = CltWall()
-            _new_cad_model = _cltWall.transform()
-            _machining_config = [(0, np.random.randint(0, 8)),
-                                 (1, np.random.randint(0, 3)),
-                                 (2, np.random.randint(0, 4)),
-                                 (3, np.random.randint(1, 7)),
-                                 (4, np.random.randint(0, 2)),
-                                 (5, np.random.randint(0, 7)),
-                                 (6, np.random.randint(0, 9))]
-            # '0: PowerOutlet, 1: Door, 2: Window, 3: TransportConnector, 4: ElectricalCabinet,'
-            # '5: ElecticalWire, 6: XFitConnector:'
+    _machining_feature_id_list = []
+    _machining_feature_list = []
+    _manufacturing_time = 0
 
-            for _machining_feature_id, _count in _machining_config:
-                for _ in range(_count):
-                    try:
-                        _machining_feature, _machining_feature_time = \
-                            MachiningFeature(_machining_feature_id, _cltWall).create()
+    try:
+        # Basiswand erzeugen
+        _cltWall = CltWall()
+        _new_cad_model = _cltWall.transform()
 
-                        if _machining_feature_time <= 0:
-                            raise ValueError("Manufacturing time is zero or below.")
+        # Zufällige Features konfigurieren
+        _machining_config = [(0, np.random.randint(0, 8)),
+                             (1, np.random.randint(0, 2)),
+                             (2, np.random.randint(0, 4)),
+                             (3, np.random.randint(1, 7)),
+                             (4, np.random.randint(0, 3)),
+                             (5, np.random.choice([0, 0, 0, 0, 1, 2, 3, 4, 5])),
+                             (6, np.random.randint(0, 9)),]
+                             # (2, np.random.randint(0, 4)),
+                             # (3, np.random.randint(1, 7)),
+                             # (4, np.random.randint(0, 3)),
+                             # (5, np.random.choice([0, 0, 0, 0, 1, 2, 3, 4, 5])),
+                             # (6, np.random.randint(4, 9))]
 
-                        _manufacturing_time += _machining_feature_time
-                        _new_cad_model = CsgOperation(_new_cad_model, _machining_feature).difference()
-                        _new_cad_model.mergeclose()
-                        _new_cad_model = mdc.segmentation(_new_cad_model)
+        generated_features = []
+        generated_ids = []
 
-                        _machining_feature_id_list.append(_machining_feature_id)
-                        _machining_feature_list.append(_machining_feature)
+        for feature_id, count in _machining_config:
+            for _ in range(count):
+                try:
+                    feature, m_time = MachiningFeature(feature_id, _cltWall).create()
+                    if m_time <= 0:
+                        raise ValueError("Manufacturing time is zero or negative.")
+                    _manufacturing_time += m_time
+                    generated_features.append(feature)
+                    generated_ids.append(feature_id)
+                except Exception as e:
+                    print(f"[⚠] Fehler beim Erzeugen von Feature {feature_id} für Modell {model_id}: {e}")
 
-                    except Exception as e:
-                        print(f"[⚠] Feature-ID {_machining_feature_id} nicht alle anwendbar für Modell {_model_id}")
+        # Feature sukzessive subtrahieren
+        valid_features = []
+        valid_ids = []
+        for i, feature in enumerate(generated_features):
+            try:
+                _new_cad_model = mdc.difference(_new_cad_model, feature)
+                valid_features.append(feature)
+                valid_ids.append(generated_ids[i])
+            except Exception as e:
+                print(f"[⚠] CSG-Differenz fehlgeschlagen (Modell {model_id}, Feature-ID {generated_ids[i]}): {e}")
 
-            mdc.write(_new_cad_model, os.path.join(os.getenv(self.target_directory), f"{_model_id}.stl"))
-            labels = MachiningFeatureLabels(_machining_feature_list, _model_id, self.target_directory,
-                                            _machining_feature_id_list)
-            labels.write_vertices_file()
-            labels.write_bounding_box_file()
-            labels.write_manufacturing_time_file(_manufacturing_time)
+        # Finales Modell verarbeiten
+        _new_cad_model.mergeclose()
+        _new_cad_model = mdc.segmentation(_new_cad_model)
 
-            print(f"✔ Created CAD model {_model_id} with features: {_machining_feature_id_list}")
+        # Speichern
+        model_path = os.path.join(base_path, f"{model_id}.stl")
+        mdc.write(_new_cad_model, model_path)
 
-            del _new_cad_model
-            del _machining_feature_id_list
+        # Labels schreiben
+        labels = MachiningFeatureLabels(valid_features, model_id, config.target_directory, valid_ids)
+        labels.write_vertices_file()
+        labels.write_bounding_box_file()
+        labels.write_manufacturing_time_file(_manufacturing_time)
+
+        elapsed = round(time.time() - start_time, 2)  # ⏱️ Zeit stoppen
+        print(f"✔ Modell {model_id} erstellt mit {len(valid_features)} Features: {valid_ids} ({elapsed} Sek.)")
+
+    except Exception as e:
+        elapsed = round(time.time() - start_time, 2)
+        print(f"[⛔] Schwerwiegender Fehler bei Modell {model_id} ({elapsed} Sek.): {e}")

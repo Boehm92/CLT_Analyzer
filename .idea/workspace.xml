@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="df917c2a-892c-4be6-a5f1-2d0c9fd69bab" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CLT_Analyzer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CLT_Analyzer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/.env" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/DataGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/DataGenerator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Door.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Door.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElecticalWire.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElecticalWire.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElectricalCabinet.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElectricalCabinet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/PowerOutlet.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/PowerOutlet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/TransportConnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/TransportConnector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Window.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/XFitConnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/XFitConnector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/base_primitive.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/base_primitive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeature.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeatureLabels.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeatureLabels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/DgcnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/DgcnNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/FeaStNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/FeaStNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/SageGnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/SageGnNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/DataImporter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/HyperParameter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/DataImporter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/HyperParameter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/FeaStNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/FeaStNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/GraphConv.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/GraphConv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/SageGnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/SageGnNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/DataImporter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/HyperParameter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/src/components/WireframeViewer/WireframeViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/src/components/WireframeViewer/WireframeViewer.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Boehm92&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Boehm92/CLT_Analyzer.git&quot;,
+    &quot;accountId&quot;: &quot;d382ea15-d401-4936-80fb-841dc2040794&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2xwaIgZpLLcbs9JwHPZAYVC9SMK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.DataGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MFR.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__main__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dg.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Boehm/Desktop/Repos/CLT_Analyzer/data/test&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Boehm\Desktop\Repos\CLT_Analyzer\data\test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.dg">
+    <configuration name="MFR" type="PythonConfigurationType" factoryName="Python">
+      <module name="CLT_Analyzer" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (CLT_Analyzer)" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Boehm\Desktop\Repos\CoCADAi_framework\.venv\Scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machining_feature_recognizer/scripts/__main__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dg" type="PythonConfigurationType" factoryName="Python">
+      <module name="CLT_Analyzer" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="TEST" value="C:\Users\Boehm\Desktop\data\test" />
+        <env name="TRAINING_DATASET_DESTINATION" value="C:\Users\Boehm\Desktop\data\graph" />
+        <env name="TRAINING_DATASET_SOURCE" value="C:\Users\Boehm\Desktop\data\cad" />
+        <env name="WEIGHTS" value="C:\Users\Boehm\Desktop\data\weights" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="DG" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Boehm\Desktop\Repos\CLT_Analyzer\.dg\Scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_generator/scripts/__main__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.MFR" />
+      <item itemvalue="Python.dg" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.122" />
+        <option value="bundled-python-sdk-880ecab49056-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.122" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df917c2a-892c-4be6-a5f1-2d0c9fd69bab" name="Changes" comment="" />
+      <created>1748851511275</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748851511275</updated>
+      <workItem from="1748851512292" duration="7570000" />
+      <workItem from="1748873839161" duration="6807000" />
+      <workItem from="1748882699587" duration="2036000" />
+      <workItem from="1748898193591" duration="88000" />
+      <workItem from="1749573643034" duration="479000" />
+      <workItem from="1749581880201" duration="3635000" />
+      <workItem from="1749624611073" duration="13247000" />
+      <workItem from="1749831304354" duration="2961000" />
+      <workItem from="1749881409000" duration="594000" />
+      <workItem from="1749883447257" duration="15368000" />
+      <workItem from="1749915396317" duration="205000" />
+      <workItem from="1749915616370" duration="101000" />
+      <workItem from="1749915875989" duration="1217000" />
+      <workItem from="1749917839628" duration="72000" />
+      <workItem from="1749917926165" duration="16843000" />
+      <workItem from="1749954202351" duration="269000" />
+      <workItem from="1749955545660" duration="1343000" />
+      <workItem from="1749979926748" duration="18574000" />
+      <workItem from="1750018143654" duration="8745000" />
+      <workItem from="1750057214786" duration="20691000" />
+      <workItem from="1750150751179" duration="7224000" />
+      <workItem from="1750245542836" duration="77000" />
+      <workItem from="1750262456530" duration="3406000" />
+      <workItem from="1750310704470" duration="6000" />
+      <workItem from="1750314830098" duration="2110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/ChebNetwork.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/GraphConvNetwork.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_time_estimator/scripts/network_models/SageGnNetwork.py</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_time_estimator/scripts/network_models/FeaStNetwork.py</url>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_time_estimator/scripts/network_models/GraphConv.py</url>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machining_time_estimator/scripts/network_models/DgcnNetwork.py</url>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElecticalWire.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CLT_Analyzer$dg.coverage" NAME="dg Coverage Results" MODIFIED="1750068238632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Boehm\Desktop\Repos\CLT_Analyzer\.dg\Scripts" />
+    <SUITE FILE_PATH="coverage/CLT_Analyzer$DataGenerator.coverage" NAME="DataGenerator Coverage Results" MODIFIED="1749918605125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_generator/scripts" />
+    <SUITE FILE_PATH="coverage/CLT_Analyzer$MFR.coverage" NAME="MFR Coverage Results" MODIFIED="1749926056824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Boehm\Desktop\Repos\CoCADAi_framework\.venv\Scripts" />
+    <SUITE FILE_PATH="coverage/CLT_Analyzer$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1749918893787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_generator/scripts" />
+  </component>
+</project>

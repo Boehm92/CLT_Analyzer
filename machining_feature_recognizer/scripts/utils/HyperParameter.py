@@ -21,8 +21,8 @@ class HyperParameter:
                 # "mlp_hidden_channels": trial.suggest_categorical("mlp_hidden_channels", [64, 128, 256, 512]),
                 # "aggr": "max",
 
-                "number_conv_layers": 3,
-                "conv_hidden_channels": 64,
+                "number_conv_layers": 2,
+                "conv_hidden_channels": 128,
                 "mlp_hidden_channels": 256,
                 "aggr": "max",
             })

@@ -5,15 +5,15 @@ import madcad as mdc
 class Window:
     def __init__(self, base_primitive):
         self.dir = "direction_1"
-        self.pos_x = np.random.uniform(100, base_primitive.length - 1000)
-        self.width = self.pos_x + np.random.uniform(700, 900)
+        self.pos_x = np.random.uniform(300, base_primitive.length - 1200)
+        self.width = self.pos_x + 900
         self.pos_y = -0.0001
         self.depth = base_primitive.depth + 0.0001
-        self.pos_z = np.random.uniform(1000, base_primitive.height - 1000)
-        self.height = self.pos_z + np.random.uniform(700, 900)
+        self.pos_z = np.random.uniform(300, base_primitive.height - 1200)
+        self.height = self.pos_z + 900
 
         self.max_volume = 243000000  # mm²
-        self.max_manufacturing_time = 0.6
+        self.max_manufacturing_time = 3
         self.manufacturing_time_side_supplement = 0.33
 
         self.transform = {
@@ -22,7 +22,7 @@ class Window:
         }
 
     def manufacturing_time_calculation(self, rectangular_passage):
-        manufacturing_time = self.max_manufacturing_time * (rectangular_passage.volume() / self.max_volume)
+        manufacturing_time = self.max_manufacturing_time
 
         return manufacturing_time
 

@@ -63,7 +63,7 @@ _parser.add_argument('--training_dataset',
                           'once, as long as the data doesnt change. '
                           '(Not used for testing)')
 _parser.add_argument('--train_val_partition',
-                     dest='train_val_partition', default=900, type=int,  # 115200
+                     dest='train_val_partition', default=45323, type=int,  # 115200
                      help='This variable allows you to separate the training data, taken from the "data -> cad ->'
                           'training" folder, into training and validation datasets. For example, if you have 24000 '
                           'cad models, if you type in value 22000 models, then 22000 models will be utilized for '
@@ -79,7 +79,7 @@ _parser.add_argument('--device',
                           'used operation system, python interpreter, used graphic card and installed cuda toolkit.'
                           'So, it may take some time to find the right setting for you. We suggest, for the first '
                           'implementation, to install the packages manually.')
-_parser.add_argument('--max_epoch', dest='max_epoch', default=30, type=int,
+_parser.add_argument('--max_epoch', dest='max_epoch', default=31, type=int,
                      help='The max epoch defines how often the complete training data is run trough. One epoch means'
                           'therefore, that the graph neural network is fitted ones an all available training data. '
                           'More epochs generally decreases the network loss, but can also lead to overfitting,'

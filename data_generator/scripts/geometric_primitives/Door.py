@@ -13,7 +13,7 @@ class Door:
         self.height = 2010
 
         self.max_volume = 542700000  # mm²
-        self.max_manufacturing_time = 1
+        self.max_manufacturing_time = 4
         self.movement_time_supplement = 0.33
 
         self.transform = {
@@ -22,8 +22,7 @@ class Door:
         }
 
     def manufacturing_time_calculation(self, rectangular_passage):
-        manufacturing_time = self.max_manufacturing_time * (rectangular_passage.volume() / self.max_volume)
-        manufacturing_time += self.movement_time_supplement
+        manufacturing_time = self.max_manufacturing_time
 
         return manufacturing_time
 

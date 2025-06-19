@@ -20,7 +20,7 @@ from network_models.GraphConvNetwork import GraphConvNetwork
 _parser = argparse.ArgumentParser(description='Base configuration of the synthetic data generator')
 _parser.add_argument('--application_mode',
                      dest='application_mode', default='test', type=str,
-                     help='The application modes has "trained" and "graph". When set to trained the framework uses the'
+                     help='The application modes has "trained" and "test". When set to trained the framework uses the'
                           'TestModel class to train graph neural network. Please note, if you want to graph different'
                           'graph conv layer, the TestModel class must be configured with accordingly. For example,'
                           'if you want to use the FeastNet layer please follow the guidelines from '
@@ -34,7 +34,7 @@ _parser.add_argument('--application_mode',
                           'procedure uses a so called hyperparameter optimization. For more info about this '
                           'optimization process, please visit: https://optuna.org/')
 _parser.add_argument('--project_name',
-                     dest='project_name', default='CLT_analyzer', type=str, #CoCadAi_framework
+                     dest='project_name', default='CLT_framework', type=str, #CoCadAi_framework
                      help='This name belongs to the wandb project which is created when the code is started. The wandb '
                           'code publishes training parameters like train_accuracy to your personal wandb dashboard. You'
                           'just have to register at www.wandb.ai and follow the instructions at: '
@@ -64,7 +64,7 @@ _parser.add_argument('--training_dataset',
                           'once, as long as the data doesnt change. '
                           '(Not used for testing)')
 _parser.add_argument('--train_val_partition',
-                     dest='train_val_partition', default=900, type=int,  # 115200
+                     dest='train_val_partition', default=45323, type=int,  # 115200
                      help='This variable allows you to separate the training data, taken from the "data -> cad ->'
                           'training" folder, into training and validation datasets. For example, if you have 24000 '
                           'cad models, if you type in value 22000 models, then 22000 models will be utilized for '

@@ -1,7 +1,5 @@
 import numpy as np
 import madcad as mdc
-from data_generator.scripts.geometric_primitives.base_primitive import CltWall
-
 
 class TransportConnector:
     def __init__(self, _base_primitive):
@@ -14,8 +12,7 @@ class TransportConnector:
         self.height = _base_primitive.height + 0.0001
 
         self.max_volume = 226080
-        self.max_manufacturing_time = 0.07
-        self.movement_time_supplement = 0.17
+        self.max_manufacturing_time = 0.5
 
         self.transform = {
             "direction_1": [mdc.vec3(self.pos_x, self.pos_y, self.pos_z),
@@ -23,8 +20,7 @@ class TransportConnector:
         }
 
     def manufacturing_time_calculation(self, _through_hole):
-        manufacturing_time = self.max_manufacturing_time * (_through_hole.volume() / self.max_volume)
-        manufacturing_time += self.movement_time_supplement
+        manufacturing_time = self.max_manufacturing_time
 
         return manufacturing_time
 

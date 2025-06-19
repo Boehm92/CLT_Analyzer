@@ -63,7 +63,7 @@ _parser.add_argument('--training_dataset',
                           'once, as long as the data doesnt change. '
                           '(Not used for testing)')
 _parser.add_argument('--train_val_partition',
-                     dest='train_val_partition', default=900, type=int, #115201
+                     dest='train_val_partition', default=45323, type=int, #115201
                      help='This variable allows you to separate the training data, taken from the "data -> cad ->'
                           'training" folder, into training and validation datasets. For example, if you have 24000 '
                           'cad models, if you type in value 22000 models, then 22000 models will be utilized for '

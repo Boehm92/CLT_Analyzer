@@ -1,10 +1,10 @@
-from data_generator.scripts.geometric_primitives.PowerOutlet import PowerOutlet
-from data_generator.scripts.geometric_primitives.Door import Door
-from data_generator.scripts.geometric_primitives.Window import Window
-from data_generator.scripts.geometric_primitives.TransportConnector import TransportConnector
-from data_generator.scripts.geometric_primitives.ElectricalCabinet import ElectricalCabinet
-from data_generator.scripts.geometric_primitives.ElecticalWire import ElectricalWire
-from data_generator.scripts.geometric_primitives.XFitConnector import XFitConnector
+from geometric_primitives.PowerOutlet import PowerOutlet
+from geometric_primitives.Door import Door
+from geometric_primitives.Window import Window
+from geometric_primitives.TransportConnector import TransportConnector
+from geometric_primitives.ElectricalCabinet import ElectricalCabinet
+from geometric_primitives.ElecticalWire import ElectricalWire
+from geometric_primitives.XFitConnector import XFitConnector
 
 
 class MachiningFeature:

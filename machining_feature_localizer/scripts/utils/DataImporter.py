@@ -11,7 +11,7 @@ class DataImporter(InMemoryDataset):
         self.data_list = []
         self.raw_data_root = raw_data_root
         super().__init__(root, transform)
-        self.data, self.slices = torch.load(self.processed_paths[0])
+        self.data, self.slices = torch.load(self.processed_paths[0], weights_only=False)
 
     @property
     def num_node_labels(self) -> int:
@@ -68,7 +68,7 @@ class DataImporter(InMemoryDataset):
             edge_index.append([index_list[2], index_list[0]])
             edge_index.append([index_list[0], index_list[2]])
 
-        unique_vectors = unique_vectors / np.array([20000, 300, 3500])
+        unique_vectors = unique_vectors / np.array([20000, 600, 3500])
 
         if annotations is not None:
             graph = Data(

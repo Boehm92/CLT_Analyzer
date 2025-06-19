@@ -1,5 +1,4 @@
 import torch
-from thop import profile
 import torch.nn.functional as f
 from torch_geometric.nn import FeaStConv as GraphConvLayer
 import torch.nn as nn

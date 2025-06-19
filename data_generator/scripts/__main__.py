@@ -1,22 +1,18 @@
 import argparse
-from DataGenerator import DataGenerator
+from multiprocessing import Pool, cpu_count
+from DataGenerator import run_single_model
 
 _parser = argparse.ArgumentParser(description='Base configuration of the synthetic data generator')
 _parser.add_argument('--target_directory',
                      dest='target_directory', default='TRAINING_DATASET_SOURCE', type=str,
-                     help='The variables TRAINING_DATASET_SOURCE is a environment variables used'
-                          'to access the training and test cad data in the CAFR framework. The variable is necessary'
-                          'for the right saving of the training data')
+                     help='The variable TRAINING_DATASET_SOURCE is an environment variable used '
+                          'to access the training and test CAD data in the CAFR framework.')
 _parser.add_argument('--cad_data_generation_start_cycle',
-                     dest='cad_data_generation_start_cycle', type=int, default=1,
-                     help='This value defines with which ID the data generation process starts. This can be important'
-                          'if a dataset was already created and has to be increased with additional data. If the'
-                          'start number of the data generation cycle then is not adapted, the existing data is just'
-                          'overwritten')
+                     dest='cad_data_generation_start_cycle', type=int, default=24001,
+                     help='Start ID of the data generation process.')
 _parser.add_argument('--cad_data_generation_end_cycles',
-                     dest='cad_data_generation_end_cycles', type=int, default=1000,
-                     help='This value defines how many cad models with multiple machining feature are '
-                          'created.')
+                     dest='cad_data_generation_end_cycles', type=int, default=56655,
+                     help='End ID of the data generation process (non-inclusive).')
 _parser.add_argument('--machining_config',
                      dest='machining_config',
                      type=str,
@@ -27,13 +23,20 @@ _parser.add_argument('--machining_config',
                                 (4, np.random.randint(1, 2)),
                                 (5, np.random.randint(1, 6)),
                                 (6, np.random.randint(1, 9))]""",
-                     help='0: PowerOutlet, 1: Door, 2: Window, 3: TransportConnector, 4: ElectricalCabinet,'
-                          '5: ElecticalWire, 6: XFitConnector:')
+                     help='Machining feature config: (ID, count)')
 _parser.add_argument('--random_generation_seed',
                      dest='random_generation_seed', type=int, default=42,
-                     help='Random seed for generating CAD models')
+                     help='Random seed for consistent generation.')
 
 if __name__ == '__main__':
     _config = _parser.parse_args()
-    _data_generator = DataGenerator(_config)
-    _data_generator.generate()
+
+    model_ids = list(range(_config.cad_data_generation_start_cycle, _config.cad_data_generation_end_cycles))
+    num_workers = 18
+
+    print(f"🔧 Starte parallele Datengenerierung mit {num_workers} Prozessen ...")
+
+    with Pool(num_workers) as pool:
+        pool.map(run_single_model, [(model_id, _config) for model_id in model_ids])
+
+    print("✅ Datengenerierung abgeschlossen.")

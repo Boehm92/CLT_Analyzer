@@ -1,5 +1,4 @@
 import torch
-from thop import profile
 from statistics import mean
 import torch.nn.functional as f
 from torch.nn import Linear

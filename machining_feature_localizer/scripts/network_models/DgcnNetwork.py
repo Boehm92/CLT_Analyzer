@@ -125,7 +125,7 @@ class DgcnNetwork(torch.nn.Module):
             out = self(data.x.to(self.device), data.edge_index.to(self.device))
             predicted_labels = out.argmax(dim=1).cpu().numpy()  # NumPy-Array
 
-            scale = torch.tensor([20000, 300, 3500], device=data.x.device)
+            scale = torch.tensor([20000, 600, 3500], device=data.x.device)
             features = (data.x * scale).cpu().numpy().tolist()
 
             response = {
