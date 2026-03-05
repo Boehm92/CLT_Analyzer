@@ -1,6 +1,5 @@
 import os
 
-import madcad as mdc
 import torch
 from torch_geometric.loader import DataLoader
 from utils.DataImporter import DataImporter
@@ -90,7 +89,11 @@ class MachiningFeatureLocalizer:
         _network_model = self.network_model(_test_dataset, self.device, self.hyper_parameters, num_classes=9).to(
             self.device
         )
-        _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfs_weights.pt"), torch.device("cuda")))
+        if self.device == "cuda":
+            _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfs_weights.pt"), torch.device("cuda")))
+        else:
+            _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfs_weights.pt"), torch.device("cpu")))
+        
         response = _network_model.test(_test_loader)
 
         _combined_response["features"].extend(response["features"])

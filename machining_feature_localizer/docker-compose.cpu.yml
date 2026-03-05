@@ -1,0 +1,17 @@
+# CPU-only compose file for Apple Silicon / non-GPU machines.
+#
+# Usage:
+#   docker compose -f docker-compose.cpu.yml up --build
+
+services:
+  clt_localizer:
+    container_name: clt_localizer
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+    volumes:
+      - ${DATA_FOLDER_EXTERNAL}:${DATA_FOLDER}

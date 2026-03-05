@@ -1,6 +1,5 @@
 import os
 
-import madcad as mdc
 import torch
 from torch_geometric.loader import DataLoader
 from utils.DataImporter import DataImporter
@@ -85,8 +84,12 @@ class MachiningFeatureRecognizer:
         _test_dataset = DataImporter(os.getenv("TEST_DATA"), os.getenv("TEST_DATA"))
         _test_loader = DataLoader(_test_dataset, batch_size=1, shuffle=False, drop_last=True)
 
-        _network_model = self.network_model(self.training_dataset, self.device, self.hyper_parameters).to(self.device)
-        _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfr_weights.pt"), torch.device("cuda")))
+        _network_model = self.network_model(_test_dataset, self.device, self.hyper_parameters).to(self.device)
+
+        if self.device == "cuda":
+            _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfr_weights.pt"), torch.device("cuda")))
+        else:
+            _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mfr_weights.pt"), torch.device("cpu")))
 
         predicted_labels = _network_model.test(_test_loader)
 

@@ -1,6 +1,5 @@
 import os
 
-import madcad as mdc
 import numpy as np
 import torch
 from stl import mesh
@@ -108,12 +107,16 @@ class ManufacturingTimeRegression:
         _combined_response["height"] = _height
 
         _test_dataset = DataImporter(os.getenv("TEST_DATA"), os.getenv("TEST_DATA"))
-        _test_loader = DataLoader(
-            _test_dataset, batch_size=1, shuffle=False, drop_last=True
-        )
+        _test_loader = DataLoader(_test_dataset, batch_size=1, shuffle=False, drop_last=True)
 
         _network_model = self.network_model(_test_dataset, self.device, self.hyper_parameters).to(self.device)
-        _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mte_weights.pt"), torch.device("cuda")))
+
+        if self.device == "cuda":
+            _network_model.load_state_dict(
+                torch.load((os.getenv("WEIGHTS") + "/mte_weights.pt"), torch.device("cuda"))
+            )
+        else:
+            _network_model.load_state_dict(torch.load((os.getenv("WEIGHTS") + "/mte_weights.pt"), torch.device("cpu")))
 
         _response += _network_model.test(_test_loader)
         os.remove(os.path.join(os.getenv("TEST_DATA"), "processed/mte_data.pt"))
