@@ -95,6 +95,16 @@ class DataImporter(InMemoryDataset):
                         file_name = str(file).replace('_vertices_label.csv', '.stl')
                         print(file_name)
                         self.data_list.append(self.cad_graph_conversion(root + '/' + file_name, file_labels))
+
+        # Fallback for inference: STL files without labels
+        if not self.data_list:
+            for root, dirs, files in os.walk(self.raw_data_root):
+                for file in files:
+                    if file.lower().endswith('.stl'):
+                        self.data_list.append(
+                            self.cad_graph_conversion(os.path.join(root, file), None)
+                        )
+        
         torch.save(self.collate(self.data_list), self.processed_paths[0])
 
     def __repr__(self) -> str:

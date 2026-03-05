@@ -1,10 +1,10 @@
 import os
-import torch
-import numpy as np
 from abc import ABC
+
+import numpy as np
+import torch
 from stl import mesh
-from torch_geometric.data import Data
-from torch_geometric.data import InMemoryDataset
+from torch_geometric.data import Data, InMemoryDataset
 
 
 class DataImporter(InMemoryDataset, ABC):
@@ -47,7 +47,7 @@ class DataImporter(InMemoryDataset, ABC):
 
     @property
     def processed_file_names(self):
-        return ['mfr_data.pt']  # Ensure this is a list
+        return ["mfr_data.pt"]  # Ensure this is a list
 
     @staticmethod
     def cad_graph_conversion(cad_directory, file_labels):
@@ -71,15 +71,21 @@ class DataImporter(InMemoryDataset, ABC):
 
         unique_vectors = unique_vectors / np.array([20000, 600, 3500])
 
-        label_array = np.zeros(7, dtype=np.float32)
-        for label in file_labels:
-            label_array[label] = 1
+        if file_labels is not None:
+            label_array = np.zeros(7, dtype=np.float32)
+            for label in file_labels:
+                label_array[label] = 1
 
-        graph = Data(
-            x=torch.tensor(unique_vectors, dtype=torch.float),
-            edge_index=torch.tensor(edge_index, dtype=torch.long).t().contiguous(),
-            y=torch.tensor(label_array, dtype=torch.float)
-        )
+            graph = Data(
+                x=torch.tensor(unique_vectors, dtype=torch.float),
+                edge_index=torch.tensor(edge_index, dtype=torch.long).t().contiguous(),
+                y=torch.tensor(label_array, dtype=torch.float),
+            )
+        else:
+            graph = Data(
+                x=torch.tensor(unique_vectors, dtype=torch.float),
+                edge_index=torch.tensor(edge_index, dtype=torch.long).t().contiguous(),
+            )
 
         return graph
 
@@ -87,15 +93,22 @@ class DataImporter(InMemoryDataset, ABC):
         for root, dirs, files in os.walk(self.raw_data_root):
             for file in files:
                 file_labels = []
-                if file.lower().endswith('_bounding_box_label.csv'):
-                    with open(f'{root}/{file}', 'r', encoding='utf-8') as f:
+                if file.lower().endswith("_bounding_box_label.csv"):
+                    with open(f"{root}/{file}", "r", encoding="utf-8") as f:
                         for line in f.readlines():
                             file_labels.append(int(line.split(",")[-1]))
-                        file_name = str(file).replace('_bounding_box_label.csv', '.stl')
-                        self.data_list.append(self.cad_graph_conversion(root + '/' + file_name, file_labels))
+                        file_name = str(file).replace("_bounding_box_label.csv", ".stl")
+                        self.data_list.append(self.cad_graph_conversion(root + "/" + file_name, file_labels))
                         print(file_name)
+
+        if not self.data_list:
+            for root, dirs, files in os.walk(self.raw_data_root):
+                for file in files:
+                    if file.lower().endswith(".stl"):
+                        self.data_list.append(self.cad_graph_conversion(os.path.join(root, file), None))
+
         data, slices = self.collate(self.data_list)
         torch.save((data, slices), self.processed_paths[0])  # Save both data and slices
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}({len(self)})'
+        return f"{self.__class__.__name__}({len(self)})"

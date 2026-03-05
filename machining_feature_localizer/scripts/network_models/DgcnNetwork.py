@@ -13,7 +13,7 @@ def MLP(channels):
 
 
 class DgcnNetwork(torch.nn.Module):
-    def __init__(self, dataset, device, hyper_parameter):
+    def __init__(self, dataset, device, hyper_parameter, num_classes=None):
         super().__init__()
         self.device = device
         self.aggr = hyper_parameter.aggr
@@ -21,6 +21,8 @@ class DgcnNetwork(torch.nn.Module):
         self.conv_hidden_channels = hyper_parameter.conv_hidden_channels
         self.mlp_hidden_channels = hyper_parameter.mlp_hidden_channels
         self.dropout_probability = hyper_parameter.dropout_probability
+
+        _num_classes = num_classes if num_classes is not None else dataset.num_classes
 
         self.conv1 = EdgeConv(
             MLP([int(2 * dataset.num_features), self.conv_hidden_channels, self.conv_hidden_channels]),
@@ -42,7 +44,7 @@ class DgcnNetwork(torch.nn.Module):
                        Dropout(self.dropout_probability),
                        MLP([int(self.mlp_hidden_channels / 4), int(self.mlp_hidden_channels / 8)]),
                        Dropout(self.dropout_probability),
-                       Lin(int(self.mlp_hidden_channels / 8), dataset.num_classes))
+                       Lin(int(self.mlp_hidden_channels / 8), _num_classes))
 
     def forward(self, x, edge_index):
 

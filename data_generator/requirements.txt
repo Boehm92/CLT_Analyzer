@@ -1,3 +1,4 @@
+arrex==0.5.2
 pymadcad==0.16.0
 numpy-stl==3.0.1
 pandas==1.1.5

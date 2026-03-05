@@ -8,10 +8,10 @@ _parser.add_argument('--target_directory',
                      help='The variable TRAINING_DATASET_SOURCE is an environment variable used '
                           'to access the training and test CAD data in the CAFR framework.')
 _parser.add_argument('--cad_data_generation_start_cycle',
-                     dest='cad_data_generation_start_cycle', type=int, default=24001,
+                     dest='cad_data_generation_start_cycle', type=int, default=1,
                      help='Start ID of the data generation process.')
 _parser.add_argument('--cad_data_generation_end_cycles',
-                     dest='cad_data_generation_end_cycles', type=int, default=56655,
+                     dest='cad_data_generation_end_cycles', type=int, default=60001,
                      help='End ID of the data generation process (non-inclusive).')
 _parser.add_argument('--machining_config',
                      dest='machining_config',

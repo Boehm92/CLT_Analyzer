@@ -1,8 +1,10 @@
-import os
 import base64
+import os
+
 import numpy as np
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-from flask import Flask, request, jsonify
+
 
 class RestService:
     def __init__(self, machining_feature_localizer):
@@ -12,45 +14,45 @@ class RestService:
         self.setup_routes()
 
     def setup_routes(self):
-        @self.app.route('/processstlmodel', methods=['POST'])
+        @self.app.route("/processstlmodel", methods=["POST"])
         def process_stl_model():
+            # try:
+            # Entferne alte Dateien
             try:
-                # Entferne alte Dateien
-                try:
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/mte_data.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_filter.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "processed/pre_transform.pt"))
-                    os.remove(os.path.join(os.getenv('TEST_DATA'), "received.stl"))
-                except FileNotFoundError:
-                    print('Graph test data could not be found.')
-                except Exception as e:
-                    print(f'Graph test data could not be deleted: {e}')
-
-                # Validierung des Requests
-                if not request.is_json:
-                    return jsonify({"error": "Invalid JSON format"}), 400
-
-                data = request.get_json()
-
-                if "stl_base64" not in data:
-                    return jsonify({"error": "Missing 'stl_base64' key in request"}), 400
-
-                _stl_as_base64_string = data["stl_base64"]
-                self.create_and_write_stl_file(_stl_as_base64_string)
-
-                _response = self.machining_feature_localizer.test()
-
-                if _response is None:
-                    print("🚨 Model did not return predictions")
-                    return jsonify({"error": "Model failed to return predictions"}), 500
-
-                _response = self.convert_numpy_types(_response)
-
-                return jsonify(_response), 200
-
+                os.remove(os.path.join(os.getenv("TEST_DATA"), "processed/mte_data.pt"))
+                os.remove(os.path.join(os.getenv("TEST_DATA"), "processed/pre_filter.pt"))
+                os.remove(os.path.join(os.getenv("TEST_DATA"), "processed/pre_transform.pt"))
+                os.remove(os.path.join(os.getenv("TEST_DATA"), "received.stl"))
+            except FileNotFoundError:
+                print("Graph test data could not be found.")
             except Exception as e:
-                print(f"🚨 Critical server error: {str(e)}")
-                return jsonify({"error": f"Critical server error: {str(e)}"}), 500
+                print(f"Graph test data could not be deleted: {e}")
+
+            # Validierung des Requests
+            if not request.is_json:
+                return jsonify({"error": "Invalid JSON format"}), 400
+
+            data = request.get_json()
+
+            if "stl_base64" not in data:
+                return jsonify({"error": "Missing 'stl_base64' key in request"}), 400
+
+            _stl_as_base64_string = data["stl_base64"]
+            self.create_and_write_stl_file(_stl_as_base64_string)
+
+            _response = self.machining_feature_localizer.test()
+
+            if _response is None:
+                print("🚨 Model did not return predictions")
+                return jsonify({"error": "Model failed to return predictions"}), 500
+
+            _response = self.convert_numpy_types(_response)
+
+            return jsonify(_response), 200
+
+        # except Exception as e:
+        #    print(f"🚨 Critical server error: {str(e)}")
+        #    return jsonify({"error": f"Critical server error: {str(e)}"}), 500
 
     def convert_numpy_types(self, obj):
         """
@@ -76,9 +78,9 @@ class RestService:
         absolute_stl_file_path = self.get_absolute_stl_file_path(_stl_file_path)
         _stl_bytes = base64.b64decode(stl_as_base64_string)
 
-        with open(absolute_stl_file_path, 'wb') as stl_file:
+        with open(absolute_stl_file_path, "wb") as stl_file:
             stl_file.write(_stl_bytes)
 
     def get_absolute_stl_file_path(self, file_name):
-        path = os.getenv('TEST_DATA')
+        path = os.getenv("TEST_DATA")
         return os.path.join(path, file_name)
