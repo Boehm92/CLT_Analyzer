@@ -1,4 +1,4 @@
-import {AppBar, Toolbar, Typography, Button, Box} from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default function TitleBar({onUploadClick}: { onUploadClick: () => void }) {
@@ -26,7 +26,7 @@ export default function TitleBar({onUploadClick}: { onUploadClick: () => void })
                         color: "white",  // Helle Schrift für guten Kontrast
                     }}
                 >
-                    CLT-Analyzer
+                    RoWaPla Analyzer
                 </Typography>
 
                 <Button

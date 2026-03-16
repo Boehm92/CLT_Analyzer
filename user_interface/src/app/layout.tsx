@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CLT Analyzer",
-  description: "Wep App to analyze CLT data for robotics application",
+  title: "RoWaPla Analyzer",
+  description: "Web App to analyze wall data for robotics application",
 };
 
 export default function RootLayout({
