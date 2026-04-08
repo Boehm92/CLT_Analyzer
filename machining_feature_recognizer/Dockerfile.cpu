@@ -1,0 +1,61 @@
+# CPU-only Dockerfile for running inference on Apple Silicon (ARM64) Macs
+# or any machine without an NVIDIA GPU.
+#
+# Usage:
+#   docker compose -f docker-compose.cpu.yml up --build
+#
+# This replaces the CUDA base image with a plain Python image and installs
+# CPU-only PyTorch + PyTorch Geometric. Inference runs on CPU.
+
+FROM python:3.10-slim-bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# System dependencies (same as CUDA Dockerfile minus CUDA-specific libs)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    libglib2.0-0 \
+    libgl1-mesa-glx \
+    git \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip
+RUN pip install --upgrade pip setuptools wheel
+
+# Install build tools for Python extensions
+RUN pip install cython pybind11
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements
+COPY requirements.txt .
+
+# Install Python packages from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install CPU-only PyTorch 2.7.0
+RUN pip install torch==2.7.0+cpu --index-url https://download.pytorch.org/whl/cpu
+
+# Install PyTorch Geometric
+RUN pip install torch_geometric
+
+# Install PyG extension libraries (CPU, aarch64 wheels available)
+# Note: pyg_lib is omitted -- no linux_aarch64 wheel exists for it.
+# torch_geometric works without pyg_lib; it just skips some optimized kernels.
+RUN pip install \
+    torch_scatter \
+    torch_sparse \
+    torch_cluster \
+    torch_spline_conv \
+    -f https://data.pyg.org/whl/torch-2.7.0+cpu.html
+
+# Copy application code
+COPY scripts/ /app/scripts/
+ENV PYTHONPATH=/app/scripts
+
+# Default: start Flask REST API in inference mode
+CMD ["python", "scripts/__main__.py", "--application_mode", "test"]

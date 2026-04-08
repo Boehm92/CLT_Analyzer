@@ -24,29 +24,29 @@ class RestService:
             except Exception as e:
                 print(f'graph test data could not be deleted: {e}')
 
-            try:
-                if not request.is_json:
-                    return jsonify({"error": "Invalid JSON format"}), 400
-                data = request.get_json()
-                if "stl_base64" not in data:
-                    return jsonify({"error": "Missing 'stl_base64' key in request"}), 400
+            #try:
+            if not request.is_json:
+                return jsonify({"error": "Invalid JSON format"}), 400
+            data = request.get_json()
+            if "stl_base64" not in data:
+                return jsonify({"error": "Missing 'stl_base64' key in request"}), 400
 
-                _stl_as_base64_string = data["stl_base64"]
-                self.create_and_write_stl_file(_stl_as_base64_string)
+            _stl_as_base64_string = data["stl_base64"]
+            self.create_and_write_stl_file(_stl_as_base64_string)
 
-                _response = self.machining_feature_localizer.test()
-                if _response is None:
-                    print("🚨 Model did not return predictions")
-                    return jsonify({"error": "Model failed to return predictions"}), 500
+            _response = self.machining_feature_localizer.test()
+            if _response is None:
+                print("🚨 Model did not return predictions")
+                return jsonify({"error": "Model failed to return predictions"}), 500
 
-                if isinstance(_response, np.ndarray):
-                    _response = _response.tolist()
+            if isinstance(_response, np.ndarray):
+                _response = _response.tolist()
 
-                return jsonify(_response), 200
+            return jsonify(_response), 200
 
-            except Exception as e:
-                print(f"🚨 Critical server error: {str(e)}")
-                return jsonify({"error": f"Critical server error: {str(e)}"}), 500
+            #except Exception as e:
+            #    print(f"🚨 Critical server error: {str(e)}")
+            #    return jsonify({"error": f"Critical server error: {str(e)}"}), 500
 
     def create_and_write_stl_file(self, stl_as_base64_string):
         _stl_file_path = "received.stl"
