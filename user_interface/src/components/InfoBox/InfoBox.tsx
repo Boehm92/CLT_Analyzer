@@ -3,6 +3,14 @@
 import { Box, Typography } from "@mui/material";
 
 export default function InfoBox({ combinedResponse }: { combinedResponse: { volume: number, body_center: number[], length: number, width: number, height: number, time: number } | null }) {
+
+    const formatTime = (time: number | undefined | null) => {
+        if (time === undefined || time === null || isNaN(time)) return "0 min 00 sek";
+        const minutes = Math.floor(time);
+        const seconds = Math.round((time - minutes) * 60);
+        return `${minutes} min ${seconds.toString().padStart(2, "0")} sek`;
+    };
+
     return (
         <Box
             sx={{
@@ -17,7 +25,7 @@ export default function InfoBox({ combinedResponse }: { combinedResponse: { volu
                 overflowY: "auto",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 color: "white",
             }}
         >
@@ -25,28 +33,17 @@ export default function InfoBox({ combinedResponse }: { combinedResponse: { volu
                 ● Dimensions:
             </Typography>
             <Typography sx={{ marginLeft: 2 }}>
-                • <b>Length:</b> {(combinedResponse?.length ? (combinedResponse.length / 1000).toFixed(3) : "0.000")} m <br />
-                • <b>Width:</b> {(combinedResponse?.width ? (combinedResponse.width / 1000).toFixed(3) : "0.000")} m <br />
-                • <b>Height:</b> {(combinedResponse?.height ? (combinedResponse.height / 1000).toFixed(3) : "0.000")} m <br />
-
-                • <b>Volume:</b> {(combinedResponse?.volume ? (combinedResponse.volume / 1_000_000_000).toFixed(3) : "0.000000000")} m³
+                • <b>Length:</b> {((combinedResponse?.length ?? 0) / 1000).toFixed(2)} m <br />
+                • <b>Width:</b> {((combinedResponse?.width ?? 0) / 1000).toFixed(2)} m <br />
+                • <b>Height:</b> {((combinedResponse?.height ?? 0) / 1000).toFixed(2)} m <br />
+                • <b>Volume:</b> {((combinedResponse?.volume ?? 0) / 1_000_000_000).toFixed(2)} m³
             </Typography>
 
             <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 2 }}>
-                ● Center of Gravity:
+                ● Manufacturing Time:
             </Typography>
             <Typography sx={{ marginLeft: 2 }}>
-                • <b>X:</b> {combinedResponse?.body_center?.[0] !== undefined ? (combinedResponse.body_center[0] / 1000).toFixed(3) : "0.000"} m <br />
-                • <b>Y:</b> {combinedResponse?.body_center?.[1] !== undefined ? (combinedResponse.body_center[1] / 1000).toFixed(3) : "0.000"} m <br />
-                • <b>Z:</b> {combinedResponse?.body_center?.[2] !== undefined ? (combinedResponse.body_center[2] / 1000).toFixed(3) : "0.000"} m <br />
-
-            </Typography>
-
-            <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 2 }}>
-                ● Production:
-            </Typography>
-            <Typography sx={{ marginLeft: 2 }}>
-                • <b>Post-processing:</b> {combinedResponse?.time?.toFixed(2) || "0.00"} min
+                •  {formatTime(combinedResponse?.time)}
             </Typography>
         </Box>
     );

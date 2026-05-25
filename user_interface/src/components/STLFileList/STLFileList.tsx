@@ -43,11 +43,11 @@ export default function STLFileList({ onSelectFile, files, onDeleteFile }: STLFi
             }}
         >
             <Typography align={"center"} variant="h6" sx={{ fontWeight: "bold", marginTop: 2, color: "#ffffff" }}>
-                STL-Dateien
+                STL-Data
             </Typography>
             {files.length === 0 ? (
                 <Typography textAlign="center" sx={{ color: "#ffffff" }}>
-                    Keine Dateien
+                    No Data
                 </Typography>
             ) : (
                 <List>

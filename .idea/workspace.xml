@@ -5,45 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df917c2a-892c-4be6-a5f1-2d0c9fd69bab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CLT_Analyzer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CLT_Analyzer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/.env" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/DataGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/DataGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Door.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Door.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElecticalWire.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElecticalWire.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElectricalCabinet.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/ElectricalCabinet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/PowerOutlet.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/PowerOutlet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/TransportConnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/TransportConnector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Window.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/Window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/XFitConnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/XFitConnector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/base_primitive.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/geometric_primitives/base_primitive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeature.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeature.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeatureLabels.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_generator/scripts/utils/MachiningFeatureLabels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/DgcnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/DgcnNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/FeaStNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/FeaStNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/SageGnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/network_models/SageGnNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/DataImporter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_localizer/scripts/utils/HyperParameter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/DataImporter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_feature_recognizer/scripts/utils/HyperParameter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/.env" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/FeaStNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/FeaStNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/GraphConv.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/GraphConv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/SageGnNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/network_models/SageGnNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/DataImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/DataImporter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/HyperParameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machining_time_estimator/scripts/utils/HyperParameter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_interface/src/components/WireframeViewer/WireframeViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/src/components/WireframeViewer/WireframeViewer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/6_Electrical Wire.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/7_X-fit.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/1_Power Outlet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/1_Power Outlet.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/2_Door.svg" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/2_Door.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/3_Window.svg" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/3_Window.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/4_Transport.svg" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/4_Transport.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/5_Fuse Box.svg" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/5_Fuse Box.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/6_Electical Wire.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/public/machiningFeatureTemplates/7_X Fit.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/src/components/InfoBox/InfoBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/src/components/InfoBox/InfoBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_interface/src/components/MachiningFeatureDisplay/MachiningFeatureDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/user_interface/src/components/MachiningFeatureDisplay/MachiningFeatureDisplay.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,6 +181,13 @@
       <workItem from="1750262456530" duration="3406000" />
       <workItem from="1750310704470" duration="6000" />
       <workItem from="1750314830098" duration="2110000" />
+      <workItem from="1750348585825" duration="335000" />
+      <workItem from="1750349299426" duration="843000" />
+      <workItem from="1750350925434" duration="4088000" />
+      <workItem from="1750357703608" duration="1311000" />
+      <workItem from="1751025998089" duration="641000" />
+      <workItem from="1751047377199" duration="11000" />
+      <workItem from="1753115955053" duration="3040000" />
     </task>
     <servers />
   </component>

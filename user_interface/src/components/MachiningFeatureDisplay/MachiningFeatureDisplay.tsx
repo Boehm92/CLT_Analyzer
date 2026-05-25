@@ -80,7 +80,7 @@ export default function MachiningFeatureDisplay({ selectedFeatures }: { selected
                             style={{ objectFit: "contain" }}
                         />
                         <Typography variant="caption" sx={{ marginTop: 1, color: "white" }}>
-                            {fileName.replace(".svg", "")}
+                            {fileName.replace(".SVG", "").replace(".svg", "").slice(2)}
                         </Typography>
                     </Box>
                 );
