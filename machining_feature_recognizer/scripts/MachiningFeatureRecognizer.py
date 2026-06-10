@@ -78,7 +78,7 @@ class MachiningFeatureRecognizer:
         _test_loader = DataLoader(_test_dataset, batch_size=self.hyper_parameters.batch_size,
                                   shuffle=False, drop_last=True)
 
-        _network_model = self.network_model(self.training_dataset, self.device,
+        _network_model = self.network_model(_test_dataset, self.device,
                                             self.hyper_parameters).to(self.device)
         _network_model.load_state_dict(
             torch.load((os.getenv('WEIGHTS') + '/mfr_weights.pt'), torch.device('cuda')))

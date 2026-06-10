@@ -1,3 +1,5 @@
+name: clt_analyzer
+
 version: '3.7'
 
 services:
